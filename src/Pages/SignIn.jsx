@@ -1,6 +1,6 @@
 import React from "react";
-import { Login } from "../components/Login";
-import { Context } from "../components/Context";
+import { Login } from "../Components/Login";
+import { Context } from "../Components/Context";
 
 export function SignIn(){
     return <div>

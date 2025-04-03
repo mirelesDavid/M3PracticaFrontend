@@ -1,9 +1,9 @@
 import React from "react";
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../Components/NavBar";
 import { Container, Grid, Card, CardContent, Typography, Box } from "@mui/material";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
-import { Context } from "../components/Context";
+import { Context } from "../Components/Context";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
