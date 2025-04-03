@@ -6,11 +6,9 @@ import { Contact } from "./Pages/Contact";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const [email, setEmail] = useState('');
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("userEmail") || "";
-    setEmail(storedEmail);
     setIsAuth(storedEmail.length > 0);
     console.log('App mounted, auth status:', { email: storedEmail, isAuth: storedEmail.length > 0 });
   }, []);
@@ -19,7 +17,6 @@ function App() {
   useEffect(() => {
     const handleStorageChange = () => {
       const storedEmail = localStorage.getItem("userEmail") || "";
-      setEmail(storedEmail);
       setIsAuth(storedEmail.length > 0);
       console.log('Storage changed, new auth status:', { email: storedEmail, isAuth: storedEmail.length > 0 });
     };
