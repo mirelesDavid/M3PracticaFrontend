@@ -1,16 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { SignIn } from "./Pages/SignIn";
 import { Dashboard } from "./Pages/Dashboard";
 import { Contact } from "./Pages/Contact";
 
 function App() {
-  const email = localStorage.getItem("userEmail") || "";
-  const isAuth = email.length > 0;
+  const [isAuth, setIsAuth] = useState(false);
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
-    console.log('App mounted, auth status:', { email, isAuth });
-  }, [email, isAuth]);
+    const storedEmail = localStorage.getItem("userEmail") || "";
+    setEmail(storedEmail);
+    setIsAuth(storedEmail.length > 0);
+    console.log('App mounted, auth status:', { email: storedEmail, isAuth: storedEmail.length > 0 });
+  }, []);
+
+  // Add a listener for storage events to handle login/logout across tabs
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedEmail = localStorage.getItem("userEmail") || "";
+      setEmail(storedEmail);
+      setIsAuth(storedEmail.length > 0);
+      console.log('Storage changed, new auth status:', { email: storedEmail, isAuth: storedEmail.length > 0 });
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   return (
     <Router>

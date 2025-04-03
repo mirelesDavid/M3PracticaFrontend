@@ -6,21 +6,33 @@ export function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = () => {
     console.log('Login attempt with:', { email, password });
     if (email.length > 0 && password.length > 0){
+      setIsLoading(true);
+      
+      // Store email in localStorage
       localStorage.setItem('userEmail', email);
       console.log('Stored email in localStorage:', email);
+      
+      // Force a storage event to notify other components
+      window.dispatchEvent(new Event('storage'));
+      
       console.log('Attempting to navigate to /mainpage');
-      navigate('/mainpage');
+      
+      // Small timeout to ensure state updates
+      setTimeout(() => {
+        navigate('/mainpage');
+        setIsLoading(false);
+      }, 100);
     } else {
       console.log('Login failed: Missing credentials');
       alert("Missing Password or Email");
     }
   };
   
-
   return (
     <React.Fragment>
       <CssBaseline />
@@ -47,8 +59,14 @@ export function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button variant="outlined" fullWidth sx={{ mt: 2 }} onClick={handleLogin}>
-              Login
+            <Button 
+              variant="outlined" 
+              fullWidth 
+              sx={{ mt: 2 }} 
+              onClick={handleLogin}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Logging in...' : 'Login'}
             </Button>
           </div>
         </Box>
