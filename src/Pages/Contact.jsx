@@ -1,4 +1,3 @@
-import React from "react";
 import { NavBar } from "../Components/NavBar";
 import { useLocation } from "react-router-dom";
 import { ContactCard } from "../Components/ContactCard";

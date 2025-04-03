@@ -1,5 +1,6 @@
 import React from 'react';
 import { CssBaseline, Container, Box, Card, CardContent, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 
 export function ContactCard({ email }) {
     return (
@@ -22,4 +23,8 @@ export function ContactCard({ email }) {
       </React.Fragment>
     );
   }
+  
+ContactCard.propTypes = {
+  email: PropTypes.string.isRequired
+};
   

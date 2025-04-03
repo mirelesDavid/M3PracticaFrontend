@@ -1,4 +1,3 @@
-import React from "react";
 import { NavBar } from "../Components/NavBar";
 import { Container, Grid, Card, CardContent, Typography, Box } from "@mui/material";
 import { Line } from "react-chartjs-2";

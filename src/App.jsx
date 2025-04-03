@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { SignIn } from "./Pages/SignIn";
 import { Dashboard } from "./Pages/Dashboard";
